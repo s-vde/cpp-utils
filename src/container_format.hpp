@@ -5,7 +5,9 @@
 #include <locale>
 #include <type_traits>
 // Containers
+#include <array>
 #include <forward_list>
+#include <list>
 #include <set>
 #include <unordered_map>
 #include <vector>
@@ -49,6 +51,21 @@ namespace utils
          @brief By default, T is not a supported container.
          */
         template<typename T> struct supported_container : public std::false_type { };
+        
+        // std::array
+        
+        template<typename T, size_t n>
+        struct supported_container<std::array<T, n>> : public std::true_type {};
+        
+        /**
+         @brief Default format for std::forward_list is [el1,...,eln].
+         */
+        template<typename T, size_t n>
+        struct container_format<std::array<T, n>>
+        {
+            const container_format_values mFormat;
+            container_format() : mFormat({ '[', ']', ',' }) { }
+        };
 		
 		// std::forward_list
 		
@@ -64,6 +81,21 @@ namespace utils
 			const container_format_values mFormat;
 			container_format() : mFormat({ '[', ']', ',' }) { }
 		};
+        
+        // std::list
+        
+        template<typename T, typename Allocator>
+        struct supported_container<std::list<T, Allocator>> : public std::true_type {};
+        
+        /**
+         @brief Default format for std::list is [el1,...,eln].
+         */
+        template<typename T, typename Allocator>
+        struct container_format<std::list<T, Allocator>>
+        {
+            const container_format_values mFormat;
+            container_format() : mFormat({ '[', ']', ',' }) { }
+        };
 		
         // std::pair
 		
