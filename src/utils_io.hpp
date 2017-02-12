@@ -26,7 +26,7 @@ namespace utils
             std::ifstream ifs(filename);
             ifs >> object;
             ifs.close();
-            return !ifs.bad();
+            return !ifs.fail();
         }
 
         template<typename T>
