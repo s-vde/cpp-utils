@@ -73,6 +73,23 @@ namespace utils
             }
             return result;
         }
+       
+       template <typename InputIt, typename OutputIt, typename UnaryPredicate, typename index_t>
+       void copy_index_if(InputIt&& input_begin,
+                          InputIt&& input_end,
+                          OutputIt&& output,
+                          UnaryPredicate&& predicate,
+                          index_t&& index=index_t{})
+       {
+          while (input_begin != input_end)
+          {
+             if (predicate(*input_begin))
+             {
+                *output++ = index++;
+             }
+             ++input_begin;
+          }
+       }
     } // end namespace utils.algo
 } // end namespace utils
 
