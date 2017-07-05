@@ -1,6 +1,5 @@
 
-#ifndef UTILS_MAP_HPP_INCLUDED
-#define UTILS_MAP_HPP_INCLUDED
+#pragma once
 
 #include <assert.h>
 #include <set>
@@ -19,23 +18,7 @@
 namespace utils
 {
     namespace maps
-    {
-        /**
-         @brief Returns { M[i].key | pred(M[i].val) }.
-         */
-        template<typename KeyT, typename ValT, typename UnaryPredicate>
-        std::set<KeyT> keys(const std::unordered_map<KeyT,ValT>& M, UnaryPredicate pred)
-        {
-            std::set<KeyT> K{};
-            algo::transform_if(
-                M.begin(), M.end(),
-                std::inserter(K, K.end()),
-                [&pred] (const auto& map) { return pred(map.second); },
-                [] (const auto& map) { return map.first; }
-            );
-            return K;
-        }
-		
+    {		
 		/**
 		 @brief Applies the given binary operation to pairs of values in M1
 		 and M2 that share the same key. Stores the results in a new 
@@ -63,5 +46,3 @@ namespace utils
         }
     } // end namespace utils.maps
 } // end namespace utils
-
-#endif
