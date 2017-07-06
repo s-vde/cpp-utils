@@ -1,8 +1,6 @@
 #pragma once
 
-#include "algo.hpp"
-
-#include <assert.h>
+#include <exception>
 #include <unordered_map>
 
 //--------------------------------------------------------------------------------------------------
