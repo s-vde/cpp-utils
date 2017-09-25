@@ -64,14 +64,25 @@ namespace datastructures
          return m_size;
       }
       
-      typename vector_t::const_iterator begin() const
+      typename vector_t::iterator begin()
       {
-         return m_vector.begin();
+          return m_vector.begin();
       }
       
-      typename vector_t::const_iterator end() const
+      typename vector_t::const_iterator cbegin() const
       {
-         return m_vector.end();
+         return m_vector.cbegin();
+      }
+      
+      typename vector_t::iterator end()
+      {
+          return m_vector.end();
+      }
+      
+      
+      typename vector_t::const_iterator cend() const
+      {
+         return m_vector.cend();
       }
       
    private:
